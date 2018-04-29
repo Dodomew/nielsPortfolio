@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+//	#Interaction (layout)
+//---------------------------------------------------------
+.is-hidden {
+	display: none;
+}
+
+.is-clickarea {
+	&:hover {
+		cursor: pointer;
+	}
+}

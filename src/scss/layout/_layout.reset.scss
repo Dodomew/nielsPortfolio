@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+// Reset (layout)
+//---------------------------------------------------------
+// based on http://jaydenseric.com/blog/forget-normalize-or-resets-lay-your-own-css-foundation
+
+
+// 2. Prevent iOS text size adjust after orientation change, without disabling
+//    user zoom.
+// 3. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
+//    navigating between pages that do/do not have enough content to produce
+//    scrollbars naturally.
+// 4. Ensure the page always fills at least the entire height of the viewport.
+// 5. Fonts on OSX will look more consistent with other systems that do not
+//    render text using sub-pixel anti-aliasing.
+
+
+//---------------------------------------------------------
+// All
+//---------------------------------------------------------
+* {
+  	-webkit-box-sizing: border-box; /* Safari 3.0 - 5.0, Chrome 1 - 9, Android 2.1 - 3.x */
+  	-moz-box-sizing: border-box;    /* Firefox 1 - 28 */
+  box-sizing: border-box;         	/* Safari 5.1+, Chrome 10+, Firefox 29+, Opera 7+, IE 8+, Android 4.0+, iOS any */
+}
+
+html {
+	-ms-text-size-adjust: 100%; /* 2 */
+	-webkit-text-size-adjust: 100%; /* 2 */
+	overflow-y: scroll; /* [3] */
+	height: 100%;
+    -moz-osx-font-smoothing: grayscale; /* [5] */
+    -webkit-font-smoothing: antialiased; /* [5] */
+}
+
+//---------------------------------------------------------
+// Typography
+//---------------------------------------------------------
+body {
+	margin: 0;
+	height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+
+	a {
+		display: block;
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+p {
+    padding: 0;
+    margin-top: 0;
+}
+
+a {
+	text-decoration: none;
+	background-color: transparent;
+}
+
+em {
+	font-style: italic;
+}
+
+strong {
+	font-weight: bold;
+}
+
+abbr[title],
+dfn[title] {
+	border-bottom: 1px dotted #000;
+}
+
+
+blockquote {
+    margin: 0;
+	position: relative;
+	quotes: "“" "”" "‘" "’";
+}
+
+figure{
+	margin: 0;
+}
+
+cite {
+	display: inline-block;
+}
+
+iframe {
+    border: 0;
+}
+
+
+//---------------------------------------------------------
+// Images
+//---------------------------------------------------------
+picture {
+	display: block;
+}
+
+img {
+    max-width: 100%;
+    font-style: italic;
+    vertical-align: middle;
+}
+
+
+//---------------------------------------------------------
+// Tables
+//---------------------------------------------------------
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+
+// Lists
+//---------------------------------------------------------
+ol,
+ul {
+	margin:  0;
+    padding: 0;
+    list-style: none;
+}
+
+
+dl,
+dd,
+dt {
+    margin: 0;
+    padding: 0;
+}
+
+
+//---------------------------------------------------------
+// Forms
+//---------------------------------------------------------
+form {
+	margin: 0;
+	padding: 0;
+}
+
+fieldset {
+  border: 0;
+  padding: 0.01em 0 0 0;
+  margin: 0;
+  min-width: 0;
+}
+
+body:not(:-moz-handler-blocked) fieldset {
+    display: table-cell;
+}
+
+legend {
+    padding: 0;
+    display: block;
+    width: 100%;
+}
+
+textarea {
+	overflow: auto; /* Remove default vertical scrollbar in IE 8/9/10/11. */
+	-webkit-appearance: none; /* Remove -webkit default styling  */
+}
+
+input,
+button,
+select  {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-ms-appearance: none;
+		-o-appearance: none;
+	appearance: none;
+}
+
+// placeholder colors
+::-webkit-input-placeholder,
+:-moz-placeholder, /* Firefox 18- */
+::-moz-placeholder, /* Firefox 19+ */
+:-ms-input-placeholder  {
+   color: #eee;
+}

@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+// #Media (layout)
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+// #Media options
+//---------------------------------------------------------
+$media-classes: 						false;
+$media-classes-mediaqueries: 			false;
+
+
+
+//---------------------------------------------------------
+// #Media mixins
+//---------------------------------------------------------
+@mixin media {
+	display: block;
+}
+
+@mixin media__section {
+	display: table-cell;
+	vertical-align: middle;
+
+	& > :last-child {
+		margin-bottom: 0;
+	}
+}
+
+
+
+//---------------------------------------------------------
+// #Media functions
+//---------------------------------------------------------
+@if ($media-classes == true) {
+
+    .media {
+	    @include media();
+
+	    &__section {
+			@include media__section();
+		}
+    }
+
+	@if ($media-classes-mediaqueries == true) {
+
+		// breakpoints
+		@each $item in $breakpoints {
+
+			// create media query
+			@include media-query(#{nth($item,1)}) {
+
+
+			     .#{nth($item,3)}-media {
+				     @include media();
+
+				    .media__section {
+						@include media__section();
+					}
+			    }
+			}
+		}
+	}
+}

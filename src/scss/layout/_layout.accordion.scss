@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+// #Accordion (layout)
+//---------------------------------------------------------
+@mixin accordion {
+    position: relative;
+}
+
+@mixin accordion__panel {
+    overflow: hidden;
+    transition: max-height .3s .1s;
+    transition: all 0.4s;
+
+    &.is-closed {
+        max-height: 0 !important;
+    }
+
+    &.is-expanded{
+        max-height: auto !important;
+    }
+}
+
+.accordion {
+    @include accordion;
+}
+
+.accordion__panel {
+    @include accordion__panel;
+}

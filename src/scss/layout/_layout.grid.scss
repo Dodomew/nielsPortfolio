@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+//#Grid (layout)
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+// #Grid options
+//---------------------------------------------------------
+$grid-classes: 							false;
+$grid-classes-mediaqueries: 			false;
+
+
+
+//---------------------------------------------------------
+// #Grid settings
+//---------------------------------------------------------
+$gridOptions: (
+  ('10', 10, 10),
+  ('10-0', 10, 0),
+  ('20-0', 20, 0),
+  ('20', 20, 20),
+  ('30', 30, 30),
+) !default;
+
+
+
+//---------------------------------------------------------
+// #Grid mixins
+//---------------------------------------------------------
+
+// Grid flexbox
+@mixin grid($gutterSize) {
+    margin: 0 0 0 rem(-$gutterSize);
+    padding: 0;
+}
+
+// Grid item
+@mixin grid__item($gutterSize,$gridSize) {
+	padding-left: rem($gutterSize);
+	margin-bottom: rem($gridSize);
+}
+
+
+
+//---------------------------------------------------------
+// #Grid functions
+//---------------------------------------------------------
+@if ($grid-classes == true) {
+
+	[class*="grid-"] {
+		overflow: hidden;
+	    display: flex;
+	    flex-flow: row wrap;
+	    list-style: none;
+	}
+
+	[class*="grid__item"] {
+		display: flex;
+	}
+
+
+	// Generate classes
+	@each $val in $gridOptions {
+		$gridName: nth($val, 1);
+		$gridLeft: nth($val, 2);
+		$gridBtm: nth($val, 3);
+
+	    .grid#{$gridName} {
+		    @include grid($gridLeft);
+
+		    .grid__item {
+				@include grid__item($gridLeft, $gridBtm);
+			}
+	    }
+	}
+
+	@if ($grid-classes-mediaqueries == true) {
+
+		// breakpoints
+		@each $item in $breakpoints {
+
+			// create media query
+			@include media-query(#{nth($item,1)}) {
+
+				// loop through width
+				@each $val in $gridOptions {
+					$gridName: nth($val, 1);
+					$gridLeft: nth($val, 2);
+					$gridBtm: nth($val, 3);
+
+				    .#{nth($item,3)}-grid#{$gridName} {
+					    @include grid($gridLeft);
+
+					    .grid__item {
+							@include grid__item($gridLeft, $gridBtm);
+						}
+				    }
+				}
+			}
+		}
+	}
+}

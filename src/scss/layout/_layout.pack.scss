@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+// #Pack (layout)
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+// #Pack options
+//---------------------------------------------------------
+$pack-classes: 								false;
+$pack-classes-mediaqueries: 				false;
+
+
+
+//---------------------------------------------------------
+// #Pack mixins
+//---------------------------------------------------------
+@mixin pack {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+@mixin pack__section {
+    display: table-cell;
+	vertical-align: middle;
+	//line-height: 0;
+
+    & > :last-child {
+	    margin-bottom: 0;
+    }
+
+	&:last-child {
+		text-align: right;
+	}
+}
+
+
+
+//---------------------------------------------------------
+// #Pack functions
+//---------------------------------------------------------
+@if ($pack-classes == true) {
+
+    .pack {
+	    @include pack();
+
+	    .pack__section {
+			@include pack__section();
+		}
+    }
+
+	@if ($pack-classes-mediaqueries == true) {
+
+		// breakpoints
+		@each $item in $breakpoints {
+
+			// create media query
+			@include media-query(#{nth($item,1)}) {
+
+
+			     .#{nth($item,3)}-pack {
+				     @include pack();
+
+				    .pack__section {
+						@include pack__section();
+					}
+			    }
+			}
+		}
+	}
+}

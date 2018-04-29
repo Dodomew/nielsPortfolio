@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+// #Spacings (layout)
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+// #Spacings options
+//---------------------------------------------------------
+
+// Margin
+$spacing-classes-margin-all:							false;
+$spacing-classes-margin-all-breakpoints:				false;
+$spacing-classes-margin-top:							false;
+$spacing-classes-margin-top-breakpoints:				false;
+$spacing-classes-margin-right:							false;
+$spacing-classes-margin-right-breakpoints:				false;
+$spacing-classes-margin-bottom:							false;
+$spacing-classes-margin-bottom-breakpoints:				false;
+$spacing-classes-margin-bottom-last-0:					false;
+$spacing-classes-margin-bottom-last-0-breakpoints:		false;
+$spacing-classes-margin-left:							false;
+$spacing-classes-margin-left-breakpoints:				false;
+$spacing-classes-margin-horizontal:						false;
+$spacing-classes-margin-horizontal-breakpoints:			false;
+$spacing-classes-margin-vertical:						false;
+$spacing-classes-margin-vertical-breakpoints:			false;
+
+// Padding
+$spacing-classes-padding-all:							false;
+$spacing-classes-padding-all-breakpoints:				false;
+$spacing-classes-padding-top:							true;
+$spacing-classes-padding-top-breakpoints:				true;
+$spacing-classes-padding-right:							false;
+$spacing-classes-padding-right-breakpoints:				false;
+$spacing-classes-padding-bottom:						false;
+$spacing-classes-padding-bottom-breakpoints:			false;
+$spacing-classes-padding-left:							false;
+$spacing-classes-padding-left-breakpoints:				false;
+$spacing-classes-padding-horizontal:					false;
+$spacing-classes-padding-horizontal-breakpoints:		false;
+$spacing-classes-padding-vertical:						false;
+$spacing-classes-padding-vertical-breakpoints:			false;
+
+
+
+//---------------------------------------------------------
+// #Spacings settings
+//---------------------------------------------------------
+$spacing: (
+	0: 0,
+	5: 5,
+	10: 10,
+	15: 15,
+	20: 20,
+	25: 25,
+	30: 30,
+	35: 35,
+	40: 40,
+	45: 45,
+	50: 50,
+);
+
+
+
+//---------------------------------------------------------
+// #Spacings functions
+//---------------------------------------------------------
+
+@each $classname, $size in $spacing {
+
+	// Margin
+	@if ($spacing-classes-margin-all == true) {
+	    .ma#{$classname} {
+	        margin: #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-margin-top == true) {
+	    .mt#{$classname} {
+	        margin-top: #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-margin-right == true) {
+	    .mr#{$classname} {
+	        margin-right: #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-margin-bottom == true) {
+	    .mb#{$classname} {
+	        margin-bottom: #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-margin-left == true) {
+	    .ml#{$classname} {
+	        margin-left: #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-margin-vertical == true) {
+	    .mv#{$classname} {
+	        margin: 0 #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-margin-vertical == true) {
+	    .mh#{$classname} {
+	        margin: #{$size}px 0 !important;
+	    }
+	}
+
+	// Padding
+	@if ($spacing-classes-padding-all == true) {
+	    .pa#{$classname} {
+	        padding: #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-padding-top == true) {
+	    .pt#{$classname} {
+	        padding-top: #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-padding-right == true) {
+	    .pr#{$classname} {
+	        padding-right: #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-padding-bottom == true) {
+	    .pb#{$classname} {
+	        padding-bottom: #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-padding-left == true) {
+	    .pl#{$classname} {
+	        padding-left: #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-padding-vertical == true) {
+	    .pv#{$classname} {
+	        padding: 0 #{$size}px !important;
+	    }
+	}
+	@if ($spacing-classes-padding-vertical == true) {
+	    .ph#{$classname} {
+	        padding: #{$size}px 0 !important;
+	    }
+	}
+}
+
+@if ($spacing-classes-margin-bottom-last-0 == true) {
+    .mb0-last {
+		& > :last-child {
+			margin-bottom: 0 !important;
+		}
+    }
+}
+
+// loop through each breakpoint
+@each $item in $breakpoints {
+	// create media query
+	@include media-query(#{nth($item,1)}) {
+
+		// loop through width
+		@each $classname, $size in $spacing {
+
+			// Margin breakpoints
+			@if ($spacing-classes-margin-all-breakpoints == true) {
+				.#{nth($item,3)}-ma#{$classname} {
+			        margin: #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-margin-top-breakpoints == true) {
+			    .#{nth($item,3)}-mt#{$classname} {
+			        margin-top: #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-margin-right-breakpoints == true) {
+			    .#{nth($item,3)}-mr#{$classname} {
+			        margin-right: #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-margin-bottom-breakpoints == true) {
+			    .#{nth($item,3)}-mb#{$classname} {
+			        margin-bottom: #{$size}px !important;
+			    }
+			}
+
+			@if ($spacing-classes-margin-left-breakpoints == true) {
+			    .#{nth($item,3)}-ml#{$classname} {
+			        margin-left: #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-margin-vertical-breakpoints == true) {
+			    .#{nth($item,3)}-mv#{$classname} {
+			        margin: 0 #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-margin-vertical-breakpoints == true) {
+			    .#{nth($item,3)}-mh#{$classname} {
+			        margin: #{$size}px 0 !important;
+			    }
+			}
+
+			// Padding breakpoints
+			@if ($spacing-classes-padding-all-breakpoints == true) {
+				.#{nth($item,3)}-pa#{$classname} {
+			        padding: #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-padding-top-breakpoints == true) {
+			    .#{nth($item,3)}-pt#{$classname} {
+			        padding-top: #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-padding-right-breakpoints == true) {
+			    .#{nth($item,3)}-pr#{$classname} {
+			        padding-right: #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-padding-bottom-breakpoints == true) {
+			    .#{nth($item,3)}-pb#{$classname} {
+			        padding-bottom: #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-padding-left-breakpoints == true) {
+			    .#{nth($item,3)}-pl#{$classname} {
+			        padding-left: #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-padding-vertical-breakpoints == true) {
+			    .#{nth($item,3)}-pv#{$classname} {
+			        padding: auto #{$size}px !important;
+			    }
+			}
+			@if ($spacing-classes-padding-vertical-breakpoints == true) {
+			    .#{nth($item,3)}-ph#{$classname} {
+			        padding: #{$size}px auto !important;
+			    }
+			}
+
+		}
+
+		@if ($spacing-classes-margin-bottom-last-0 == true) {
+		    .#{nth($item,3)}-mb0-last {
+				& > :last-child {
+					margin-bottom: 0 !important;
+				}
+		    }
+		}
+	}
+}

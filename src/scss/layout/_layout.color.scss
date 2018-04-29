@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+// #Color
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+//  #Color options
+//---------------------------------------------------------
+$color-debug-info: 				false;
+
+$bg-colors: 					true;
+$text-colors: 					false;
+
+$border-colors:					false;
+$border-width-all: 				false;
+$border-width-top: 				false;
+$border-width-right: 			false;
+$border-width-bottom: 			false;
+$border-width-left: 			false;
+$border-width-horizontal: 		false;
+$border-width-vertical: 		false;
+
+
+
+//---------------------------------------------------------
+//  #Color settings
+//---------------------------------------------------------
+$colors: (
+
+	// Reds
+    redTomato: 		#FF6342,
+    redOrange: 		#FF4500,
+    redCoral: 		#FF7F50,
+
+	'white':			#fff,
+
+	// Greys
+	greylight:		#eee,
+	greymid:		#c5c5c5,
+	greydark:		#444,
+	'black':		#000,
+
+	purple:			lighten(purple, 70%),
+);
+
+
+$borders: (
+	1,
+	2,
+);
+
+
+
+//---------------------------------------------------------
+//  #Color functions
+//---------------------------------------------------------
+@if ($bg-colors == true) {
+
+	@each $classname, $color in $colors {
+		.bg-#{$classname} {
+       		 background:  #{$color} !important;
+	    }
+	}
+}
+
+@if ($border-colors == true) {
+
+	@each $classname, $color in $colors {
+		@each $border in $borders {
+
+			@if ($border-width-all == true) {
+				.ba#{$border}-#{$classname} {
+		       		 border: #{$border}px solid #{$color} !important;
+			    }
+		    }
+
+			@if ($border-width-top == true) {
+				.bt#{$border}-#{$classname} {
+		       		 border-top: #{$border}px solid #{$color} !important;
+			    }
+		    }
+
+		    @if ($border-width-bottom == true) {
+				.bl#{$border}-#{$classname} {
+		       		 border-bottom: #{$border}px solid #{$color} !important;
+			    }
+		    }
+
+		    @if ($border-width-right == true) {
+				.br#{$border}-#{$classname} {
+		       		 border-right: #{$border}px solid #{$color} !important;
+			    }
+		    }
+
+		    @if ($border-width-right == true) {
+				.bl#{$border}-#{$classname} {
+		       		 border-left: #{$border}px solid #{$color} !important;
+			    }
+		    }
+
+		    @if ($border-width-horizontal == true) {
+				.bv#{$border}-#{$classname} {
+		       		 border-right: #{$border}px solid #{$color} !important;
+		       		 border-left: #{$border}px solid #{$color} !important;
+			    }
+		    }
+
+		   @if ($border-width-vertical == true) {
+				.bh#{$border}-#{$classname} {
+		       		 border-top: #{$border}px solid #{$color} !important;
+		       		 border-bottom: #{$border}px solid #{$color} !important;
+			    }
+		    }
+	    }
+	}
+}
+
+
+// Debug colors
+// Maps index
+@function enumerate($colors) {
+	$map: ();
+	@for $index from 1 through length($colors) {
+		$value: nth($colors, $index);
+		$map: map-merge($map, ($index: $value));
+	}
+	@return $map;
+}
+
+@if ($color-debug-info == true) {
+
+	// Loop colors and output list
+	@each $index, $value in enumerate($colors) {
+		$val1: nth($value, 1);
+		$val2: nth($value, 2);
+
+		.color-list {
+			@include cf;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				position: relative;
+				float: left;
+				border: 1px solid #000;
+				margin-left: 30px;
+				margin-bottom: 30px;
+				width: 100px;
+				height: 100px;
+				text-align: center;
+				vertical-align: middle;
+
+				&:nth-child( #{$index} ) {
+					background: $val2;
+
+					&:after {
+						position: absolute;
+						right: 0;
+						top: 0;
+						padding: rem(1) rem(2);
+						text-align: center;
+						font-size: rem(13);
+						color: #fff;
+						background: rgba(0,0,0,.5);
+						content: quote($val2);
+					}
+
+					&:before {
+						position: absolute;
+						top: 100%;
+						padding-top: 3px;
+						left: 0;
+						width: 100%;
+						text-align: center;
+						font-size: rem(13);
+						content: quote($val1);
+					}
+
+				}
+			}
+		}
+	}
+
+}

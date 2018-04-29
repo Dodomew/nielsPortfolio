@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+//	Project settings
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------
+// Fontsize settings
+//---------------------------------------------------------
+$em-base: 16px !default;
+
+
+
+//---------------------------------------------------------
+// Filepaths
+//---------------------------------------------------------
+$image-path: "../img/";
+$css-path: "../../fonts/";
+
+
+
+//---------------------------------------------------------
+// Breakpoint settings
+//---------------------------------------------------------
+$breakpoint-debug-info: false;
+
+$breakpoints: (
+  ("mobile-sml", '(min-width: 350px)', 'ms'),
+  ("mobile-med", '(min-width: 450px)', 'mm'),
+  ("mobile-lrg", '(min-width: 550px)', 'ml'),
+  ("tablet-sml", '(min-width: 650px)', 'ts'),
+  ("tablet-med", '(min-width: 750px)', 'tm'),
+  ("tablet-lrg", '(min-width: 850px)', 'tl'),
+  ("desktop-sml", '(min-width: 1024px)', 'ds'),
+  ("desktop-med", '(min-width: 1280px)', 'dm'),
+  ("desktop-lrg", '(min-width: 1400px)', 'dl')
+) !default;
+
+
+
+//---------------------------------------------------------
+// Imports (do not change order)
+//---------------------------------------------------------
+@import "../tools/tools.mixins";
+@import "../tools/tools.functions";

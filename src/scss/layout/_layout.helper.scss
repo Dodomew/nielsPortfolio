@@ -1,0 +1,268 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+//  #Helper (layout)
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+//  #Helper options
+//---------------------------------------------------------
+
+// Align
+$align-classes: 						false;
+$align-classes-breakpoints: 			false;
+$vertical-align-classes: 				false;
+$vertical-align-classes-breakpoints:	false;
+
+// Floats
+$float-classes: 						false;
+$float-classes-breakpoints: 			false;
+
+// Positions
+$position-classes: 						false;
+$position-classes-breakpoints: 			false;
+
+// Display
+$display-classes: 						false;
+$display-classes-breakpoints: 			false;
+
+
+
+//---------------------------------------------------------
+//  #Helper settings
+//---------------------------------------------------------
+$aligns: (
+	tac: center !important,
+	tal: left !important,
+	tar: right !important,
+);
+
+$valigns: (
+	vat: top !important,
+	vab: bottom !important,
+	vam: middle !important,
+);
+
+$floats: (
+	fr: right !important,
+	fl: left !important,
+);
+
+$positions: (
+	rel: relative !important,
+	abs: absolute !important,
+);
+
+$displays: (
+	db: block !important,
+	dn: none !important,
+	dib: inline-block !important,
+	di: inline !important,
+);
+
+@mixin cf {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin absc($horizontal: true, $vertical: true) {
+	position: absolute;
+	@if ($horizontal and $vertical) {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	@else if ($horizontal) {
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
+	@else if ($vertical) {
+		top: 50%;
+		transform: translate(0, -50%);
+	}
+}
+
+@mixin absb {
+	position: absolute;
+ 	bottom:  0;
+}
+
+@mixin abst {
+	position: absolute;
+ 	top:  0;
+}
+
+
+//---------------------------------------------------------
+//	#Helper functions
+//---------------------------------------------------------
+@if ($align-classes == true) {
+
+	@each $classname, $align in $aligns {
+
+		.#{$classname} {
+		    text-align: $align;
+		}
+	}
+
+	@if ($align-classes-breakpoints == true) {
+		@each $item in $breakpoints {
+			// create media query
+			@include media-query(#{nth($item,1)}) {
+				// loop through width
+				@each $classname, $align in $aligns {
+
+					.#{nth($item,3)}-#{$classname} {
+				        text-align: $align;
+				    }
+				}
+			}
+		}
+	}
+}
+
+
+@if ($vertical-align-classes == true) {
+
+	@each $classname, $valign in $valigns {
+
+		.#{$classname} {
+		    vertical-align: $valign;
+		}
+	}
+
+	@if ($vertical-align-classes-breakpoints == true) {
+
+		@each $item in $breakpoints {
+			// create media query
+			@include media-query(#{nth($item,1)}) {
+				// loop through width
+				@each $classname, $valign in $valigns {
+
+					.#{nth($item,3)}-#{$classname} {
+				        vertical-align: $valign;
+				    }
+				}
+			}
+		}
+	}
+}
+
+
+@if ($display-classes == true) {
+
+	@each $classname, $display in $displays {
+
+		.#{$classname} {
+		    display: $display;
+		}
+	}
+
+	@if ($display-classes-breakpoints == true) {
+
+		@each $item in $breakpoints {
+			// create media query
+			@include media-query(#{nth($item,1)}) {
+				// loop through width
+				@each $classname, $display in $displays {
+
+					.#{nth($item,3)}-#{$classname} {
+				        display: $display;
+				    }
+				}
+			}
+		}
+	}
+}
+
+
+@if ($float-classes == true) {
+
+	.cf {
+		@include cf;
+	}
+
+	.ofh {
+		overflow: hidden;
+	}
+
+	@each $classname, $float in $floats {
+
+		.#{$classname} {
+		    float: $float;
+		}
+
+	}
+
+	@if ($float-classes-breakpoints == true) {
+
+		@each $item in $breakpoints {
+
+			// create media query
+			@include media-query(#{nth($item,1)}) {
+
+				.#{nth($item,3)}-cf {
+					@include cf;
+				}
+
+				.#{nth($item,3)}-ofh {
+					overflow: hidden;
+				}
+
+				// loop through width
+				@each $classname, $float in $floats {
+
+					.#{nth($item,3)}-#{$classname} {
+				        float: $float;
+				    }
+
+				}
+			}
+
+		}
+	}
+}
+
+
+@if ($position-classes == true) {
+
+	.absc {
+		@include absc;
+	}
+
+	@each $classname, $position in $positions {
+
+		.#{$classname} {
+		    position: $position;
+		}
+	}
+
+	@if ($position-classes-breakpoints == true) {
+
+		@each $item in $breakpoints {
+
+			// create media query
+			@include media-query(#{nth($item,1)}) {
+
+				// loop through width
+				@each $position in $positions {
+					$posName: nth($position, 1);
+					$posVal: nth($position, 2);
+
+					.#{nth($item,3)}-#{$posName} {
+				        position: $posVal;
+				    }
+				}
+
+				.#{nth($item,3)}-absc {
+					@include absc;
+				}
+			}
+		}
+	}
+}

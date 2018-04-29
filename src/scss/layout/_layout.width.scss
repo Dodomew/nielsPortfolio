@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+//  #Width (layout)
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+//  #Width options
+//---------------------------------------------------------
+$width-classes: 							false;
+$width-classes-mediaqueries: 				false;
+$maxwidth-classes: 							true;
+$maxwidth-classes-mediaqueries: 			true;
+
+
+
+//---------------------------------------------------------
+//  #Width settings
+//---------------------------------------------------------
+$widths: (
+    33: 33.3333%, 
+    50: 50%,
+    66: 66.6667%,
+    100: 100%,
+);
+
+$max-widths: (
+	520: 520px,
+	720: 720px,
+	920: 920px,
+	960: 960px,
+	1280: 1280px,
+);
+
+
+
+//---------------------------------------------------------
+//  #Width functions
+//---------------------------------------------------------
+@if ($width-classes == true) {
+
+	@each $classname, $size in $widths {
+	    .w#{$classname} {
+	        width: #{$size} !important;
+	    }
+	}
+
+	@if ($width-classes-mediaqueries == true) {
+
+		// loop through each breakpoint
+		@each $item in $breakpoints {
+
+			// create media query
+			@include media-query(#{nth($item,1)}) {
+
+				// loop through width
+				@each $classname, $size in $widths {
+
+					// create generic classname per breakpoint
+					 .#{nth($item,3)}-w#{$classname} {
+						width: #{$size} !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+@if ($maxwidth-classes == true) {
+
+	@each $classname, $size in $max-widths {
+	    .mw#{$classname} {
+	        max-width: #{$size} !important;
+	        margin: auto;
+	    }
+	}
+
+	@if ($maxwidth-classes-mediaqueries == true) {
+
+		// loop through each breakpoint
+		@each $item in $breakpoints {
+
+			// create media query
+			@include media-query(#{nth($item,1)}) {
+
+				// loop through width
+				@each $classname, $size in $max-widths {
+
+					// create generic classname per breakpoint
+					 .#{nth($item,3)}-mw#{$classname} {
+						max-width: #{$size} !important;
+					}
+				}
+			}
+		}
+	}
+}

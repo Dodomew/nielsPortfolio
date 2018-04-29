@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+// #Accessibility
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+// #Accessibility settings
+//---------------------------------------------------------
+@mixin screenreader {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+}
+
+@mixin focus {
+	outline: 0; // disable outline/focus on click
+	box-shadow:0 0 7px #0060b8; // set same style for all browsers
+}
+
+@mixin skiplink {
+	position: absolute;
+	display: block;
+	left: rem(-1000);
+	padding: 1em;
+	border: 2px solid #000;
+	color: #000;
+	background-color: #fff;
+	z-index: 10;
+
+	&:focus {
+		top: 1rem;
+		left: 1rem;
+	}
+}
+
+
+//---------------------------------------------------------
+// #Accessibility styles
+//---------------------------------------------------------
+.screenreader {
+	@include screenreader;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+	outline: none;
+}

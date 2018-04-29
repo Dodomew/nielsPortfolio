@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+//---------------------------------------------------------
+//  #Functions
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+//  Calculate responsive widths (px to %)
+//---------------------------------------------------------
+
+// Usage: calc-width(650px, 1000px);
+// output: 	width: 65%;
+@function cp($target, $container) {
+    @return ($target / $container) * 100%;
+}
+
+
+//---------------------------------------------------------
+//  Loops
+//---------------------------------------------------------
+@function color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $colors.";
+  @return null;
+}
+
+
+//---------------------------------------------------------
+//  Strip units
+//---------------------------------------------------------
+
+@function strip-units($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+
+//---------------------------------------------------------
+//  Convert pixels to rems
+//---------------------------------------------------------
+// eg. for a relational value of 12px write rem(12)
+// Assumes $em-base is the font-size of <html>
+
+@function rem($pxval) {
+
+  @if not unitless($pxval) {
+    $pxval: strip-units($pxval);
+  }
+
+  $base: $em-base;
+  @if not unitless($base) {
+    $base: strip-units($base);
+  }
+
+  @return ($pxval / $base) * 1rem;
+}
+
+
+//---------------------------------------------------------
+//  Breakpoints Debug info
+//---------------------------------------------------------
+@if ($breakpoint-debug-info == true) {
+
+    // Show Mediqueries on screen
+    @each $breakpoint in $breakpoints {
+
+    // Grab the alias and the condition from their respective locations in
+    // the list.
+    $alias:     nth($breakpoint, 1);
+    $condition: nth($breakpoint, 2);
+
+    // If the media query we’ve specified has an alias and a condition...
+
+        // ...tell the mixin that we’ve found it...
+        $breakpoint-found: true;
+
+        // ...and spit it out here.
+        @media #{$condition} {
+            html:after{
+	            position: fixed;
+	            content: 'breakpoint-name: ' + $alias;
+	            bottom:0;
+	            left: 0;
+	            font-size: em(15);
+	            padding: em(8);
+	            width: 100%;
+	            color: #fff;
+	            background: #000;
+	            opacity: .8;
+	            z-index: 999;
+	        }
+        }
+    }
+}
+
+
+//---------------------------------------------------------
+//  Convert to int
+//---------------------------------------------------------
+
+@function convert_to_int($value) {
+  @if type-of($value) == 'number' {
+    @return $value;
+  } @else if type-of($value) != 'string' {
+    $_: log('Value for `to-number` should be a number or a string.');
+  }
+
+  $result: 0;
+  $digits: 0;
+  $minus: str-slice($value, 1, 1) == '-';
+  $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
+
+  @for $i from if($minus, 2, 1) through str-length($value) {
+    $character: str-slice($value, $i, $i);
+
+    @if not (index(map-keys($numbers), $character) or $character == '.') {
+      @return to-length(if($minus, -$result, $result), str-slice($value, $i))
+    }
+
+    @if $character == '.' {
+      $digits: 1;
+    } @else if $digits == 0 {
+      $result: $result * 10 + map-get($numbers, $character);
+    } @else {
+      $digits: $digits * 10;
+      $result: $result + map-get($numbers, $character) / $digits;
+    }
+  }
+
+  @return if($minus, -$result, $result);;
+}

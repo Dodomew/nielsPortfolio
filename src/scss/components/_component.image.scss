@@ -1,0 +1,47 @@
+.image {
+	&__container {
+		position: relative;
+		display: block;
+		width: 100%;
+		background-color: darkgrey;
+
+		&:nth-child(even) .image__bg {
+			-webkit-clip-path: polygon(0% 0, 50% 0%, 65% 100%, 0% 100%);
+			clip-path: polygon(0% 0, 50% 0%, 65% 100%, 0% 100%);
+		}
+
+		&:nth-child(even) .image__meta {
+			left: initial;
+			right: 0;
+			text-align: right;
+			padding: 10px 10px 0 0;
+		}
+	}
+
+	&__bg {
+		// background-image: url(http://via.placeholder.com/395x150);
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		padding-bottom: 25%;
+		-webkit-clip-path: polygon(35% 0, 100% 0%, 100% 100%, 50% 100%);
+		clip-path: polygon(35% 0, 100% 0%, 100% 100%, 50% 100%);
+	}
+
+	&__overlay {
+		// -webkit-mask-image: url('../src/pixelfade03.png');
+		// mask-image: url('../src/pixelfade03.png');
+		// -webkit-mask-position: right center;
+		// -webkit-mask-size: contain;
+		// -webkit-mask-repeat: no-repeat;
+	}
+
+	&__meta {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 35%;
+		text-align: left;
+		padding: 10px 0 0 10px;
+	}
+}
