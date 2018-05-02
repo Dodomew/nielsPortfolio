@@ -34,6 +34,7 @@ gulp.task('js', function() {
   return gulp.src([
   		// main
 		'./src/js/libs/jquery-2.1.4.min.js',
+		'./src/js/libs/ScrollToPlugin.min.js',
   		'./src/js/main.js'
   	])
 

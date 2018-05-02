@@ -1,47 +1,165 @@
 .image {
+	&__list {
+		padding: 0 10px;
+
+		&-title {
+			font-size: rem(22);
+			margin-bottom: 10px;
+		}
+	}
+
 	&__container {
 		position: relative;
 		display: block;
 		width: 100%;
-		background-color: darkgrey;
+		background-color: rgb(20,20,20);
+		transition: background-color 0.15s linear;
+		margin-bottom: 20px;
 
-		&:nth-child(even) .image__bg {
-			-webkit-clip-path: polygon(0% 0, 50% 0%, 65% 100%, 0% 100%);
-			clip-path: polygon(0% 0, 50% 0%, 65% 100%, 0% 100%);
+		& + .image__list-title {
+			margin-top: 60px;
 		}
 
-		&:nth-child(even) .image__meta {
-			left: initial;
-			right: 0;
-			text-align: right;
-			padding: 10px 10px 0 0;
+		&:hover {
+			cursor: pointer;
+			background-color: lighten(rgb(20,20,20), 10%);
 		}
 	}
 
 	&__bg {
-		// background-image: url(http://via.placeholder.com/395x150);
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center;
-		padding-bottom: 25%;
-		-webkit-clip-path: polygon(35% 0, 100% 0%, 100% 100%, 50% 100%);
-		clip-path: polygon(35% 0, 100% 0%, 100% 100%, 50% 100%);
-	}
-
-	&__overlay {
-		// -webkit-mask-image: url('../src/pixelfade03.png');
-		// mask-image: url('../src/pixelfade03.png');
-		// -webkit-mask-position: right center;
-		// -webkit-mask-size: contain;
-		// -webkit-mask-repeat: no-repeat;
+		padding-bottom: 66.66%;
+		transition: background-size 0.15s linear;
 	}
 
 	&__meta {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 35%;
-		text-align: left;
-		padding: 10px 0 0 10px;
+		display: block;
+		position: relative;
+		color: #fff;
+		padding: 5px 10px;
+
+		& p {
+			font-size: rem(16);
+		}
+	}
+
+	&__title {
+		font-size: rem(24);
+		margin-bottom: 8px;
+	}
+
+	&__icons {
+		list-style-type: none;
+		padding: 10px 0;
+		margin: 0;
+		position: relative;
+		display: block;
+	}
+
+	&__icon {
+		width: 20px;
+		height: 20px;
+		display: inline-block;
+		background-repeat: no-repeat;
+		background-size: contain;
+		margin-right: 8px;
+
+		&-android {
+			background-image: url("../src/images/android-w.png");
+		}
+
+		&-ios {
+			background-image: url("../src/images/ios-w.png");
+		}
+
+		&-ds {
+			background-image: url("../src/images/ds_icon-w.png");
+		}
+
+		&-3ds {
+			background-image: url("../src/images/3ds_icon-w.png");
+		}
+
+		&-ps3 {
+			background-image: url("../src/images/ps3-w.png");
+		}
+
+		&-switch {
+			background-image: url("../src/images/switch_icon-w.png");
+		}
+
+		&-steam {
+			background-image: url("../src/images/steam-w.png");
+		}
+	}
+}
+
+@include media-query('tablet-sml') {
+	.image {
+
+		&__list {
+			&-title {
+				font-size: rem(26);
+				margin-bottom: 14px;
+			}
+		}
+		&__icon {
+			width: 30px;
+			height: 30px;
+		}
+
+		&__icons {
+			position: absolute;
+			bottom: 0;
+		}
+
+		&__bg {
+			padding-bottom: 33.33%;
+			background-size: 100%;
+			-webkit-clip-path: polygon(25% 0, 100% 0%, 100% 100%, 40% 100%);
+			clip-path: polygon(25% 0, 100% 0%, 100% 100%, 40% 100%);
+		}
+
+		&__container {
+			&:nth-child(even) .image__bg {
+				-webkit-clip-path: polygon(0% 0, 60% 0%, 75% 100%, 0% 100%);
+				clip-path: polygon(0% 0, 60% 0%, 75% 100%, 0% 100%);
+			}
+
+			&:nth-child(even) .image__meta {
+				left: initial;
+				right: 0;
+				text-align: right;
+				padding: 10px 10px 0 0;
+			}
+
+			&:hover .image__bg {
+				background-size: 110%;
+			}
+		}
+
+		&__meta {
+			color: #fff;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 25%;
+			height: 100%;
+			text-align: left;
+			padding: 10px 0 0 10px;
+		}
+
+
+	}
+}
+
+@include media-query('desktop-sml') {
+	.image {
+		&__icon {
+			width: 50px;
+			height: 50px;
+		}
 	}
 }

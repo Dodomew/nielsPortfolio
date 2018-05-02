@@ -47,7 +47,7 @@ $(document).ready(function() {
 	}).resize();
 
 	// transfer click to element
-	$('body').on('click', '.js-href-click', function (e) {
+	$('body').on('click', '.js-href-click', function (e) { 
 		//$(this).find('.js-href').click(); // Infinite recursion and Not working!!
 		if ($(e.target).prop('tagName') != 'A') {
 			var anchor = $(this).find('.js-href').length ? $(this).find('.js-href') : $(this).find('a');
@@ -68,10 +68,17 @@ $(document).ready(function() {
 		}
 	});
 
+	$(document).on("click", ".js-scrollto", function(e) {
+		e.preventDefault();
+		var theID = $(this).attr('href');
+		$("html, body").animate({
+			scrollTop: $(theID).offset().top - 40
+		}, 500);
+	});
 
 	// Init functions
 	function init(){
-		cssScrollAnimations();
+		// cssScrollAnimations();
 	}
 	init();
 
