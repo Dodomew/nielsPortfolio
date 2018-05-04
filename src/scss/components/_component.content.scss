@@ -3,8 +3,18 @@
 	@include open-sans;
 	position: relative;
 
+	&__link {
+		text-decoration: none;
+		color: #000;
+		font-weight: bold;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
 	&__bg {
-		background-color: #e4e4e4;;
+		background-color: #e4e4e4;
 		min-height: 100%;
 	}
 
@@ -49,7 +59,7 @@
 	&__video {
 		width: 100%;
 		text-align: center;
-		margin: 30px 0;
+		margin: 10px 0;
 
 		& video {
 			width: 100%;
@@ -61,6 +71,11 @@
 			margin: 60px 0;
 		}
 	}
+
+	&__bulletlist {
+		list-style-type: initial;
+		margin: 16px 0 16px 40px;
+	}
 }
 
 .w50 {
@@ -70,6 +85,8 @@
 .page {
 	background-color: #26262A;
 }
+
+
 
 @include media-query('tablet-sml') {
 	.content {
@@ -99,6 +116,11 @@
 
 		&__image {
 			max-width: 410px;
+		}
+
+		&__title {
+			font-size: rem(48px);
+			text-align: center;
 		}
 	}
 }
