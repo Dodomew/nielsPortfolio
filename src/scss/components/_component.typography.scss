@@ -13,3 +13,11 @@
 @mixin open-sans {
 	font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
 }
+
+.strong {
+	font-weight: bold;
+}
+
+.br {
+	display: block;
+}

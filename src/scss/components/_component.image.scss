@@ -56,6 +56,18 @@
 		margin: 0;
 		position: relative;
 		display: block;
+
+		&--header {
+			display: none;
+			list-style-type: none;
+			position: absolute;
+			top: 40px;
+			right: 10px;
+
+			& .image__icon-logo {
+				width: 300px;
+			}
+		}
 	}
 
 	&__icon {
@@ -93,6 +105,10 @@
 		&-steam {
 			background-image: url("../src/images/steam-w.png");
 		}
+
+		&-logo {
+			background-image: url('../src/images/monstersandsprites.png');
+		}
 	}
 }
 
@@ -100,6 +116,7 @@
 	.image {
 
 		&__list {
+			margin: 0 10px;
 			&-title {
 				font-size: rem(26);
 				margin-bottom: 14px;
@@ -113,10 +130,17 @@
 		&__icons {
 			position: absolute;
 			bottom: 0;
+
+			&--header {
+				display: block;
+				& .image__icon-logo {
+					width: 180px;
+				}
+			}
 		}
 
 		&__bg {
-			padding-bottom: 33.33%;
+			padding-bottom: 29%;
 			background-size: 100%;
 			-webkit-clip-path: polygon(25% 0, 100% 0%, 100% 100%, 40% 100%);
 			clip-path: polygon(25% 0, 100% 0%, 100% 100%, 40% 100%);
@@ -160,6 +184,14 @@
 		&__icon {
 			width: 50px;
 			height: 50px;
+		}
+
+		&__icons {
+			&--header {
+				& .image__icon-logo {
+					width: 300px;
+				}
+			}
 		}
 	}
 }

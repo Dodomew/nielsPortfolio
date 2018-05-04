@@ -1,10 +1,12 @@
 .list {
 	list-style-type: none;
-	padding: 0 0 10px 0px;
-	margin: 0 10px 30px 10px;
+	padding: 10px 0 10px 0px;
+	margin: 0 10px 10px 10px;
 
 	&__item {
 		display: block;
+		min-width: 120px;
+		text-align: center;
 		padding: 5px 10px;
 		margin-bottom: 12px;
 		border: 1px solid #26262A;
@@ -23,7 +25,7 @@
 
 @include media-query('tablet-sml') {
 	.list {
-		padding: 0 0 30px 13px;
+		padding: 10px 0 30px 13px;
 
 		&__item {
 			display: inline-block;
